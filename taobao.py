@@ -115,7 +115,9 @@ if __name__ == '__main__':
     closeFloatWindow()
 
     # 自动扔骰子
-    while int(d.xpath('//*[@resource-id="module-container"]/android.view.View[2]/android.view.View[3]/android.view.View[1]').child("android.widget.Button").text.split('，')[1]) > 0:
+    num = int(d(textContains='22点清空').info['text'].split('，')[1])
+    while num > 0:
         print('投掷骰子x1')
-        d.xpath('//*[@resource-id="module-container"]/android.view.View[2]/android.view.View[3]/android.view.View[1]').child("android.widget.Button").click()
+        d(textContains='22点清空').click()
         time.sleep(10)
+        num = int(d(textContains='22点清空').info['text'].split('，')[1])
