@@ -125,12 +125,13 @@ if __name__ == '__main__':
     closeFloatWindow()
 
     # 自动扔骰子
-    num = getMT()
-    while num > 0:
-        logging.info('投掷骰子x1')
-        d(textContains='22点清空').click()
-        time.sleep(10)
+    if not d(textMatches='未匹配到对手|每日9:00开赛').exists:
         num = getMT()
+        while num > 0:
+            logging.info('投掷骰子x1')
+            d(textContains='22点清空').click()
+            time.sleep(10)
+            num = getMT()
 
     # 领取红包
     logging.warning('任务已完成，请记得手动领取红包')
